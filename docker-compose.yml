@@ -25,9 +25,9 @@ services:
   database:
     image: mariadb:10.2.38
     volumes:
-      - db-data:/var/lib/mysql/
+      - database-data:/var/lib/mysql/
     environment:
-      MARIADB_ROOT_PASSWORD: ${DB_PASSWORD}
+      MARIADB_RANDOM_ROOT_PASSWORD: true
       MARIADB_DATABASE: ${DB_DATABASE}
       MARIADB_USER: ${DB_USERNAME}
       MARIADB_PASSWORD: ${DB_PASSWORD}
@@ -48,10 +48,10 @@ services:
     deploy:
       replicas: ${REPLICAS:-1}
 
-  elastic:
+  elasticsearch:
     image: elasticsearch:7.12.1
     volumes:
-      - elastic-data:/usr/share/elasticsearch/data
+      - elasticsearch-data:/usr/share/elasticsearch/data
     environment:
       TZ: ${TIMEZONE}
     networks:
@@ -60,9 +60,9 @@ services:
       replicas: ${REPLICAS:-1}
 
 volumes:
-  db-data:
+  database-data:
   redis-data:
-  elastic-data:
+  elasticsearch-data:
 
 networks:
   internal:
