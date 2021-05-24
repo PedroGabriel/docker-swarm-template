@@ -40,17 +40,17 @@ services:
       - db-data:/opt/couchdb/data
     networks:
       - net
-#    deploy:
-#      resources:
-#        limits:
-#          cpus: '0.30'
-#          memory: 512M
-#        reservations:
-#          cpus: '0.15'
-#          memory: 256M
-#      placement:
-#        constraints:
-#          - node.labels.swarmpit.db-data == true
+    deploy:
+      resources:
+        limits:
+          cpus: '0.30'
+          memory: 512M
+        reservations:
+          cpus: '0.15'
+          memory: 256M
+      placement:
+        constraints:
+          - node.labels.swarmpit.db-data == true
   influxdb:
     image: influxdb:1.7
     volumes:
@@ -58,16 +58,16 @@ services:
     networks:
       - net
     deploy:
-#      resources:
-#        reservations:
-#          cpus: '0.3'
-#          memory: 128M
-#        limits:
-#          cpus: '0.6'
-#          memory: 512M
-#      placement:
-#        constraints:
-#          - node.labels.swarmpit.influx-data == true
+      resources:
+        reservations:
+          cpus: '0.3'
+          memory: 128M
+        limits:
+          cpus: '0.6'
+          memory: 512M
+      placement:
+        constraints:
+          - node.labels.swarmpit.influx-data == true
   agent:
     image: swarmpit/agent:latest
     environment:
@@ -77,14 +77,13 @@ services:
     networks:
       - net
     deploy:
-      mode: global
-#      resources:
-#        limits:
-#          cpus: '0.10'
-#          memory: 64M
-#        reservations:
-#          cpus: '0.05'
-#          memory: 32M
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: 64M
+        reservations:
+          cpus: '0.05'
+          memory: 32M
 
 networks:
   net:

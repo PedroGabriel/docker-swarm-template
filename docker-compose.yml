@@ -57,9 +57,6 @@ services:
     networks:
       - internal
     deploy:
-      placement:
-        constraints:
-          - node.role == worker
       replicas: ${REPLICAS:-1}
 
 volumes:
