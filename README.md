@@ -39,6 +39,7 @@ export JOIN_TOKEN=$(docker swarm join-token --quiet worker)
 
 for i in 1 2; do
   WORKER=$CLUSTER-$i
+  docker-machine create --driver digitalocean --digitalocean-image ubuntu-18-04-x64 --digitalocean-access-token $DOTOKEN $WORKER
   docker-machine ssh $WORKER "docker swarm join --token ${JOIN_TOKEN} ${LEADER_IP}:2377"
 done
 
