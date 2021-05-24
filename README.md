@@ -47,7 +47,7 @@ docker stack deploy -c docker/traefik.yml --with-registry-auth traefik
 
 docker stack deploy -c docker/swarmpit.yml --with-registry-auth swarmpit
 
-docker stack deploy -c docker-compose.yml --with-registry-auth $PROJECT
+docker stack deploy -c docker-compose.yml --with-registry-auth ${PROJECT-app}
 
 ```
 
