@@ -42,16 +42,16 @@ for i in 1 2; do
   docker-machine ssh $WORKER "docker swarm join --token ${JOIN_TOKEN} ${LEADER_IP}:2377"
 done
 
-docker stack deploy -c ./docker/registry.yml --with-registry-auth registry
+docker stack deploy -c docker/registry.yml --with-registry-auth registry
 
-docker stack deploy -c ./docker/traefik.yml --with-registry-auth traefik
+docker stack deploy -c docker/traefik.yml --with-registry-auth traefik
 
-docker stack deploy -c ./docker/swarmpit.yml --with-registry-auth swarmpit
+docker stack deploy -c docker/swarmpit.yml --with-registry-auth swarmpit
 
 docker stack deploy -c docker-compose.yml --with-registry-auth ${PROJECT}
 
 ```
 
-Test in loclahost with auto ip
+Test in localhost with auto ip  
 `docker swarm init --advertise-addr=$(hostname -I  | grep -o '^\S*')`
 
