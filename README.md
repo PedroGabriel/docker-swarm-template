@@ -1,6 +1,6 @@
 # Docker Swarm Test
 
-**Treafik, Private Regisrty, Swarmpit**  
+**Treafik, Private Registry, Swarmpit**  
 **Multi site with auto discovery**
 
 ### Building images
