@@ -21,7 +21,7 @@
 
 # RUN npm install && npm production
 
-FROM alpine:3.13
+FROM alpine:3.13.5
 
 # Install packages and remove default server definition
 RUN apk --no-cache add \
