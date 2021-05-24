@@ -27,8 +27,6 @@ docker-machine create --driver digitalocean --digitalocean-image ubuntu-18-04-x6
 
 export LEADER_IP=$(docker-machine ip $LEADER)
 
-docker-machine ip $LEADER
-
 eval $(docker-machine env $LEADER)
 
 docker swarm init --advertise-addr=$LEADER_IP
