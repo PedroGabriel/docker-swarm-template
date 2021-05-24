@@ -41,7 +41,6 @@ services:
       - --providers.docker=true
       - --providers.docker.exposedbydefault=false
       - --providers.docker.swarmmode=true
-      #- --providers.docker.network=public
       - --entrypoints.http.address=:80
       - --entrypoints.https.address=:443
       - --certificatesresolvers.le.acme.email=${SSL_EMAIL}

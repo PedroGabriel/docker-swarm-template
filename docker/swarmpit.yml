@@ -25,10 +25,10 @@ services:
       labels:
         - traefik.enable=true
         - traefik.docker.network=public
-        - traefik.http.routers.swarmpit-http.rule=Host(`cluster.${CLUSTER_DOMAIN}`)
+        - traefik.http.routers.swarmpit-http.rule=Host(`${SWARMPIT_SUBDOMAIN}.${CLUSTER_DOMAIN}`)
         - traefik.http.routers.swarmpit-http.entrypoints=http
         - traefik.http.routers.swarmpit-http.middlewares=https-redirect
-        - traefik.http.routers.swarmpit-https.rule=Host(`cluster.${CLUSTER_DOMAIN}`)
+        - traefik.http.routers.swarmpit-https.rule=Host(`${SWARMPIT_SUBDOMAIN}.${CLUSTER_DOMAIN}`)
         - traefik.http.routers.swarmpit-https.entrypoints=https
         - traefik.http.routers.swarmpit-https.tls=true
         - traefik.http.routers.swarmpit-https.tls.certresolver=le
