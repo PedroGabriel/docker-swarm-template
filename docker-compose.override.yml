@@ -17,7 +17,7 @@ services:
     ports:
       - ${REDIS_PORT}:6379
 
-  elastic:
+  elasticsearch:
     ports:
       - ${ELASTIC_PORT}:9200
 
