@@ -31,8 +31,6 @@ eval $(docker-machine env $LEADER)
 
 docker swarm init --advertise-addr=$LEADER_IP
 
-docker network create --driver=overlay public
-
 export JOIN_TOKEN=$(docker swarm join-token --quiet worker)
 
 for i in 1 2; do
