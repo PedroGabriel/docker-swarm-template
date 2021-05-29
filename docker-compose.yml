@@ -1,10 +1,10 @@
 version: "3"
 services:
   app:
-    image: ${REGISTRY}/nginx-php:latest
+    image: ${REGISTRY:-localhost:5000}/nginx-php:latest
     working_dir: /var/www/html
     environment:
-      TZ: ${TIMEZONE}
+      TZ: ${TIMEZONE:-America/Sao_Paulo}
     networks:
       - internal
       - public
@@ -13,14 +13,14 @@ services:
       labels:
         - traefik.enable=true
         - traefik.docker.network=public
-        - traefik.http.routers.${PROJECT}-http.rule=Host(`${DOMAIN}`)
-        - traefik.http.routers.${PROJECT}-http.entrypoints=http
-        - traefik.http.routers.${PROJECT}-http.middlewares=https-redirect
-        - traefik.http.routers.${PROJECT}-https.rule=Host(`${DOMAIN}`)
-        - traefik.http.routers.${PROJECT}-https.entrypoints=https
-        - traefik.http.routers.${PROJECT}-https.tls=true
-        - traefik.http.routers.${PROJECT}-https.tls.certresolver=le
-        - traefik.http.services.${PROJECT}.loadbalancer.server.port=80
+        - traefik.http.routers.${PROJECT:-app}-http.rule=Host(`${DOMAIN:-localhost}`)
+        - traefik.http.routers.${PROJECT:-app}-http.entrypoints=http
+        - traefik.http.routers.${PROJECT:-app}-http.middlewares=https-redirect
+        - traefik.http.routers.${PROJECT:-app}-https.rule=Host(`${DOMAIN:-localhost}`)
+        - traefik.http.routers.${PROJECT:-app}-https.entrypoints=https
+        - traefik.http.routers.${PROJECT:-app}-https.tls=true
+        - traefik.http.routers.${PROJECT:-app}-https.tls.certresolver=le
+        - traefik.http.services.${PROJECT:-app}.loadbalancer.server.port=80
 
   database:
     image: mariadb:10.2.38
@@ -31,7 +31,7 @@ services:
       MARIADB_DATABASE: ${DB_DATABASE}
       MARIADB_USER: ${DB_USERNAME}
       MARIADB_PASSWORD: ${DB_PASSWORD}
-      TZ: ${TIMEZONE}
+      TZ: ${TIMEZONE:-America/Sao_Paulo}
     networks:
       - internal
     deploy:
@@ -42,7 +42,7 @@ services:
     volumes:
       - redis-data:/data
     environment:
-      TZ: ${TIMEZONE}
+      TZ: ${TIMEZONE:-America/Sao_Paulo}
     networks:
       - internal
     deploy:
@@ -53,7 +53,7 @@ services:
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
     environment:
-      TZ: ${TIMEZONE}
+      TZ: ${TIMEZONE:-America/Sao_Paulo}
     networks:
       - internal
     deploy:
